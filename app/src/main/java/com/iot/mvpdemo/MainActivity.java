@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseFragmentActivity implements MvpView {
-    ProgressDialog progressDialog;
+
     MvpPresenter presenter;
     @BindView(R.id.navigationBar)
     EasyNavigationBar navigationBar;
@@ -51,9 +51,6 @@ public class MainActivity extends BaseFragmentActivity implements MvpView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("正在加载数据");
         //初始化Presenter
         fragments.add(new AFragment());
         fragments.add(new BFragment());

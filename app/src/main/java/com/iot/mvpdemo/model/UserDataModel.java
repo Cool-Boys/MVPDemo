@@ -49,15 +49,8 @@ public class UserDataModel extends BaseModel<UserBean> {
     }
     @Override
     public void requestOKGOPost(Map params,JsonCallback<UserBean> callback){
-        OkGo.<UserBean>post("http://183.230.11.41:62011/iot/system/user/getUserById.shtml")
+        OkGo.<UserBean>post("https://www.easy-mock.com/mock/5cf27c783a77990337d059b8/example/getUserById")
                 .tag(this)
-                .params(params)
-                .execute(callback);
-
-    }
-
-    public void requestOKGdeviceSensor(Map params,JsonCallback<DeviceSensorBean> callback){
-        OkGo.<DeviceSensorBean>post("http://183.230.11.41:62011/iot/device/device/getDeviceSensor.shtml").tag(this)
                 .params(params)
                 .execute(callback);
 
