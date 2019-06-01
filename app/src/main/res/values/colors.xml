@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#aa000000</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="qmui_config_color_transparent">#00000000</color>
+    <color name="color_transparent">#00000000</color>
     <color name="white">#ffffff</color>
-    <color name="my_blue2">#3175ca</color>
+    <color name="btn_color">#a0000000</color>
     <color name="devStatusOnline">#3175ca</color>
 </resources>

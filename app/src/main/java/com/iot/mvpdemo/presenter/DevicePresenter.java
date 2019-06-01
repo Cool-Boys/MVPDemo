@@ -3,13 +3,13 @@ package com.iot.mvpdemo.presenter;
 import com.iot.mvpdemo.base.DataModel;
 import com.iot.mvpdemo.callback.JsonCallback;
 import com.iot.mvpdemo.model.DeviceDataModel;
-import com.iot.mvpdemo.model.bean.DeviceByEmpIdBean;
+import com.iot.mvpdemo.model.bean.DeviceDataBean;
 import com.iot.mvpdemo.presenter.base.BasePresenter;
 import com.iot.mvpdemo.view.MvpView;
 
 import java.util.Map;
 
-public class DevicePresenter  extends BasePresenter<MvpView<DeviceByEmpIdBean>> {
+public class DevicePresenter  extends BasePresenter<MvpView<DeviceDataBean>> {
     public void getData(Map<String, String> params){
         //显示正在加载进度条
         if (!isViewAttached()) {
@@ -18,10 +18,10 @@ public class DevicePresenter  extends BasePresenter<MvpView<DeviceByEmpIdBean>> 
         }
         getView().showLoading();
         DataModel.request(DeviceDataModel.class)
-                .requestOKGOPost(params, new JsonCallback<DeviceByEmpIdBean>() {
+                .requestOKGOPost(params, new JsonCallback<DeviceDataBean>() {
 
                     @Override
-                    public void onError(com.lzy.okgo.model.Response<DeviceByEmpIdBean> response) {
+                    public void onError(com.lzy.okgo.model.Response<DeviceDataBean> response) {
                         getView().showErr( response.body().getMessage());
                         if (isViewAttached()) {
                             getView().hideLoading();
@@ -29,7 +29,7 @@ public class DevicePresenter  extends BasePresenter<MvpView<DeviceByEmpIdBean>> 
                     }
 
                     @Override
-                    public void onSuccess(com.lzy.okgo.model.Response<DeviceByEmpIdBean> response) {
+                    public void onSuccess(com.lzy.okgo.model.Response<DeviceDataBean> response) {
 
                         if (response.body().getErrcode() > -1) {
                             getView().setData(response.body());

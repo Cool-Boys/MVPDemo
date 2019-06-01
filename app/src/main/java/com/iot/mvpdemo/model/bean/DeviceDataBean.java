@@ -5,7 +5,7 @@ import com.iot.mvpdemo.model.base.BaseBean;
 import java.io.Serializable;
 import java.util.List;
 
-public class DeviceByEmpIdBean extends BaseBean {
+public class DeviceDataBean extends BaseBean {
 
     /**
      * count : 11

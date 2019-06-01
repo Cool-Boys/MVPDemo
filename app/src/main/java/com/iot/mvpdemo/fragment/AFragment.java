@@ -1,6 +1,5 @@
 package com.iot.mvpdemo.fragment;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +20,7 @@ import com.iot.mvpdemo.R;
 import com.iot.mvpdemo.adapter.SmartViewHolder;
 import com.iot.mvpdemo.adapter.smartBaseRecyclerAdapter;
 import com.iot.mvpdemo.base.BaseFragment;
-import com.iot.mvpdemo.model.bean.DeviceByEmpIdBean;
+import com.iot.mvpdemo.model.bean.DeviceDataBean;
 import com.iot.mvpdemo.presenter.DevicePresenter;
 import com.iot.mvpdemo.util.gson.mGson;
 import com.iot.mvpdemo.view.MvpView;
@@ -38,17 +37,17 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AFragment extends BaseFragment implements AdapterView.OnItemClickListener, MvpView<DeviceByEmpIdBean> {
+public class AFragment extends BaseFragment implements AdapterView.OnItemClickListener, MvpView<DeviceDataBean> {
 
 
     @BindView(R.id.dev_list)
     RecyclerView devList;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    private smartBaseRecyclerAdapter<DeviceByEmpIdBean.DataBean> mAdapter;
+    private smartBaseRecyclerAdapter<DeviceDataBean.DataBean> mAdapter;
     DevicePresenter presenter;
     private static Gson gson = mGson.buildGson();
-    private List<DeviceByEmpIdBean.DataBean> listDev = new ArrayList<>();
+    private List<DeviceDataBean.DataBean> listDev = new ArrayList<>();
 
     Map<String, String> getDeviceByEmpIdParams = new HashMap<>();
     private int page = 1;
@@ -98,10 +97,10 @@ public class AFragment extends BaseFragment implements AdapterView.OnItemClickLi
 
     private void initAdapter() {
 
-        mAdapter = new smartBaseRecyclerAdapter<DeviceByEmpIdBean.DataBean>(listDev, R.layout.device_item_layout, this) {
+        mAdapter = new smartBaseRecyclerAdapter<DeviceDataBean.DataBean>(listDev, R.layout.device_item_layout, this) {
 
             @Override
-            protected void onBindViewHolder(SmartViewHolder holder, DeviceByEmpIdBean.DataBean model, int position) {
+            protected void onBindViewHolder(SmartViewHolder holder, DeviceDataBean.DataBean model, int position) {
                 int resourceId = R.mipmap.ic_launcher;
 //                if (model.getTYPE_ID() == 1) {
 //                    resourceId = R.drawable.device_item;
@@ -155,7 +154,7 @@ public class AFragment extends BaseFragment implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        DeviceByEmpIdBean.DataBean model = listDev.get(position);
+        DeviceDataBean.DataBean model = listDev.get(position);
 
         showToast("点击了" + model.getDEVICE_IDNAME());
     }
@@ -166,7 +165,7 @@ public class AFragment extends BaseFragment implements AdapterView.OnItemClickLi
     }
 
     @Override
-    public void setData(DeviceByEmpIdBean data) {
+    public void setData(DeviceDataBean data) {
         if (data.getErrcode() > -1) {
             listDev = data.getData();
             String strDevs = gson.toJson(listDev);
